@@ -10,11 +10,9 @@ import java.awt.event.*;
 
 public class CalculatorGui extends JFrame implements ActionListener {
     private final SpringLayout springLayout = new SpringLayout();
-    private CalculatorService calculatorService;
+    private final CalculatorService calculatorService;
 
     private JTextField displayField;
-
-    private JButton[] buttons;
 
     private boolean pressedOperator = false;
     private boolean pressedEquals = false;
@@ -56,7 +54,6 @@ public class CalculatorGui extends JFrame implements ActionListener {
         GridLayout gridLayout = new GridLayout(CommonConstants.BUTTON_ROWCOUNT, CommonConstants.BUTTON_COLCOUNT);
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(gridLayout);
-        buttons = new JButton[CommonConstants.BUTTON_COUNT];
         for(int i = 0; i < CommonConstants.BUTTON_COUNT; i++) {
             JButton button = new JButton(getButtonLabel(i));
             button.setFont(new Font("Dialog", Font.PLAIN, CommonConstants.BUTTON_FONTSIZE));
