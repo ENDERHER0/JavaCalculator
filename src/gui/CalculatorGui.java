@@ -76,41 +76,25 @@ public class CalculatorGui extends JFrame implements ActionListener {
 
     }
     public String getButtonLabel(int buttonIndex) {
-        switch (buttonIndex){
-            case 0:
-                return "7";
-            case 1:
-                return "8";
-            case 2:
-                return "9";
-            case 3:
-                return "*";
-            case 4:
-                return "4";
-            case 5:
-                return "5";
-            case 6:
-                return "6";
-            case 7:
-                return "/";
-            case 8:
-                return "1";
-            case 9:
-                return "2";
-            case 10:
-                return "3";
-            case 11:
-                return "+";
-            case 12:
-                return ".";
-            case 13:
-                return "0";
-            case 14:
-                return "=";
-            case 15:
-                return "-";
-        }
-        return "";
+        return switch (buttonIndex) {
+            case 0 -> "7";
+            case 1 -> "8";
+            case 2 -> "9";
+            case 3 -> "*";
+            case 4 -> "4";
+            case 5 -> "5";
+            case 6 -> "6";
+            case 7 -> "/";
+            case 8 -> "1";
+            case 9 -> "2";
+            case 10 -> "3";
+            case 11 -> "+";
+            case 12 -> ".";
+            case 13 -> "0";
+            case 14 -> "=";
+            case 15 -> "-";
+            default -> "";
+        };
     }
 
 
@@ -128,21 +112,13 @@ public class CalculatorGui extends JFrame implements ActionListener {
         } else if (buttonCommand.equals("=")) {
             calculatorService.setNum2(Double.parseDouble(displayField.getText()));
 
-            double result = 0;
-            switch (calculatorService.getMathSymbol()){
-                case '+':
-                    result = calculatorService.add();
-                    break;
-                case '-':
-                    result = calculatorService.subtract();
-                    break;
-                case '*':
-                    result = calculatorService.multiply();
-                    break;
-                case '/':
-                    result = calculatorService.divide();
-                    break;
-            }
+            double result = switch (calculatorService.getMathSymbol()) {
+                case '+' -> calculatorService.add();
+                case '-' -> calculatorService.subtract();
+                case '*' -> calculatorService.multiply();
+                case '/' -> calculatorService.divide();
+                default -> 0;
+            };
 
             displayField.setText(Double.toString(result));
 
